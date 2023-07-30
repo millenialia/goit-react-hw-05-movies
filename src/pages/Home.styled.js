@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+
 
 
 export const Heading = styled.h1`
@@ -38,6 +38,3 @@ justify-content: center;
 
 `
 
-export const Link = styled(NavLink)`
-
-`;

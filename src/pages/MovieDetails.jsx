@@ -2,6 +2,8 @@ import { Link, Outlet, useParams, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchMovieDetailsById } from "../services/api"
 
+import { Heading, MovieContainer, HeadingSecondary, List, Genres, Back } from "./MovieDetails.styled";
+
 export const MovieDetails = () => {
 
   const [title, setTitle] = useState('')
@@ -11,7 +13,7 @@ export const MovieDetails = () => {
   const [poster, setPoster] = useState('')
 
   const location = useLocation();
-  const backPath = location.state?.from ?? '/movies'
+  const backPath = location.state?.from ?? '/'
 
 const { movieId } = useParams();
 
@@ -44,33 +46,36 @@ const { movieId } = useParams();
 
     <div>
 
-      <Link to={backPath}>Go back</Link>
+      <Back to={backPath}>Go back</Back>
 
+      <MovieContainer>
       { poster ? <img src={''||`https://image.tmdb.org/t/p/w500${poster}`} alt="poster" /> : <p>poster</p>}
 
+<div>
+      <Heading>{title} ({year})</Heading>
 
-      <h1>{title} ({year})</h1>
-
-      <h2>Overview</h2>
+      <HeadingSecondary>Overview</HeadingSecondary>
       <p>{overview}</p>
 
-      <h2>Genres</h2>
-      <ul>
+      <HeadingSecondary>Genres</HeadingSecondary>
+      <Genres>
         {genres.map(({id, name}) =>{
           return (
             <li key={id}>{name}</li>
           )
         })}
-      </ul>
+          </Genres>
+          </div>
+        </MovieContainer>
 
-      <ul>
+      <List>
         <li>
             <Link to={"cast"}>Cast</Link>
         </li>
         <li>
             <Link to="reviews">Reviews</Link>
         </li>
-      </ul>
+      </List>
 
       <Outlet />
     </div>

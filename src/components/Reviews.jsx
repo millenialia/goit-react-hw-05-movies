@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchMovieReviewsById } from "../services/api"
 
-
+import { List } from "./Reviews.styled";
 
 export const Reviews = () => {
 
@@ -26,7 +26,7 @@ const fetchReviews = async () => {
   return (
 
 
-    <ul>
+    <List>
       {reviews.map(({ author, content, id }) => {
         return (
           <li key={id}>
@@ -39,7 +39,7 @@ const fetchReviews = async () => {
           </li>
         )
       })}
-    </ul>
+    </List>
   )
 }
 
