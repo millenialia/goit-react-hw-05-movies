@@ -37,7 +37,7 @@ const { movieId } = useParams();
     }
 
     fetchMovie()
-  }, [])
+  }, [movieId])
 
   return (
 

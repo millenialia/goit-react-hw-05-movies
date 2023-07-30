@@ -8,8 +8,9 @@ export const Cast = () => {
   const [cast, setCast] = useState([])
 
   const { movieId } = useParams();
+
   useEffect(() => {
-const fetchCast = async () => {
+  const fetchCast = async () => {
   try {
     const { cast } = await fetchMovieCreditsById(movieId)
     setCast(cast)
@@ -19,7 +20,7 @@ const fetchCast = async () => {
     }
 
     fetchCast()
-  }, [])
+  }, [movieId])
 
   return (
     <ul>

@@ -4,8 +4,7 @@ import { Movies } from "../pages/Movies"
 import { MovieDetails } from "../pages/MovieDetails"
 import { Reviews } from "./Reviews";
 import { Cast } from "./Cast";
-import { fetchMovieCreditsById } from "../services/api"
-import { Container, Header, Link, Main, Body, Navigation } from "./App.styled";
+import { Container, Header, Link, Main } from "./App.styled";
 
 export const App = () => {
   return (

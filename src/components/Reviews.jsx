@@ -21,7 +21,7 @@ const fetchReviews = async () => {
     }
 
     fetchReviews()
-  }, [])
+  }, [movieId])
 
   return (
 

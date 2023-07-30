@@ -4,7 +4,7 @@ import { fetchMovieByName } from "../services/api"
 
 export const Movies = () => {
 
-  const [query, setQuery] = useState('')
+  // const [query, setQuery] = useState('')
   const [movies, setMovies] = useState([])
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -22,14 +22,14 @@ export const Movies = () => {
     }
 
     fetchMovies()
-  }, [searchParams])
+  }, [searchParams, searchQuery])
 
 
   const onSubmit = (e) => {
     e.preventDefault()
     const query = e.target.query.value
     setSearchParams({query})
-    setQuery(query)
+    // setQuery(query)
     e.target.reset()
   }
 
