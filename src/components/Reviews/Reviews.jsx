@@ -1,10 +1,12 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchMovieReviewsById } from "../services/api"
+import { fetchMovieReviewsById } from "../../services/api"
 
 import { List } from "./Reviews.styled";
 
-export const Reviews = () => {
+const Reviews = () => {
+
+  const location = useLocation()
 
   const [reviews, setReviews] = useState([])
 
@@ -27,7 +29,8 @@ const fetchReviews = async () => {
 
 
     <List>
-      {reviews.map(({ author, content, id }) => {
+      { reviews.length === 0 ? <p>No reviews available</p> :
+        reviews.map(({ author, content, id }) => {
         return (
           <li key={id}>
             <p>
@@ -43,3 +46,4 @@ const fetchReviews = async () => {
   )
 }
 
+export default Reviews;

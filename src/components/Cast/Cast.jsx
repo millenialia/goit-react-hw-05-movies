@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchMovieCreditsById } from "../services/api"
+import { fetchMovieCreditsById } from "../../services/api"
 
 
 import { List } from "./Cast.styled";
 
-export const Cast = () => {
+const Cast = () => {
 
   const [cast, setCast] = useState([])
 
@@ -15,6 +15,7 @@ export const Cast = () => {
   const fetchCast = async () => {
   try {
     const { cast } = await fetchMovieCreditsById(movieId)
+    
     setCast(cast)
       } catch (error) {
         console.log(error);
@@ -26,12 +27,12 @@ export const Cast = () => {
 
   return (
     <List>
-      {
+      {  cast.length === 0 ? <p>No cast available</p> :
         cast.map(({ name, character, profile_path, id }) => {
           return (
-            profile_path &&
+
             <li key={id}>
-              <img src={`https://image.tmdb.org/t/p/w500${profile_path}`} alt="profile" />
+              {profile_path ? <img src={`https://image.tmdb.org/t/p/w500${profile_path}`} alt="profile" /> : <img src={'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg'} alt="profile" />}
               <p>{name}</p>
               <p>Character: {character}</p>
             </li>
@@ -42,3 +43,4 @@ export const Cast = () => {
   )
 }
 
+export default Cast;

@@ -15,6 +15,8 @@ row-gap: 15px;
   gap: 5px;
 >img{
   width: 150px;
+  height: 225px;
+  
 }
   }
 

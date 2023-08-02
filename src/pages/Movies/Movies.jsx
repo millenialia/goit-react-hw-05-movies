@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
-import { Link, Outlet, useSearchParams } from "react-router-dom";
-import { fetchMovieByName } from "../services/api"
+import { useEffect, useState, Suspense } from "react";
+import { Outlet, useSearchParams } from "react-router-dom";
+import { fetchMovieByName } from "../../services/api"
+import MovieList from "components/MovieList/MovieList";
 
-import { Form, List  } from "./Movies.styles";
+import { Form, Container  } from "./Movies.styles";
 
-export const Movies = () => {
+const Movies = () => {
 
   // const [query, setQuery] = useState('')
   const [movies, setMovies] = useState([])
@@ -38,26 +39,22 @@ export const Movies = () => {
 
   return (
     <div>
+      <Container>
       <Form action="movie-search" onSubmit={onSubmit}>
         <input type="text" name="query"/>
         <button type="submit">Search</button>
       </Form>
 
-      <List>
-        {movies.map(({ title, id, poster_path }) => {
-          return (
-            poster_path &&
-            <li key={id}>
-              <Link to={`/movies/${id}`} state={{ from: `/movies?query=${searchQuery}` }}>
-                <img src={'' || `https://image.tmdb.org/t/p/w500${poster_path}`} alt="poster" />
-                <p>{title}</p>
-              </Link>
-            </li>
-          )
-        })}
-      </List>
+        <MovieList
+          movies={movies}
+          searchQuery={searchQuery} />
 
-      <Outlet />
+     <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
+    </Container>
     </div>
   )
 }
+
+export default Movies;
