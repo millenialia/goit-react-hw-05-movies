@@ -6,8 +6,6 @@ import { List } from "./Reviews.styled";
 
 const Reviews = () => {
 
-  const location = useLocation()
-
   const [reviews, setReviews] = useState([])
 
   const { movieId } = useParams();
