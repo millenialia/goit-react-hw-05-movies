@@ -1,5 +1,5 @@
 import { useEffect, useState, Suspense } from "react";
-import { Outlet, useSearchParams } from "react-router-dom";
+import { Outlet, useSearchParams, useLocation } from "react-router-dom";
 import { fetchMovieByName } from "../../services/api"
 import MovieList from "components/MovieList/MovieList";
 
@@ -13,6 +13,8 @@ const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const searchQuery = searchParams.get("query") ?? ""
+
+  const location = useLocation();
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -47,7 +49,8 @@ const Movies = () => {
 
         <MovieList
           movies={movies}
-          searchQuery={searchQuery} />
+          searchQuery={searchQuery}
+          location={location}/>
 
      <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
